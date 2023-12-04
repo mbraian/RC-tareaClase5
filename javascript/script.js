@@ -83,12 +83,38 @@ let eliminarProducto = carrito => {
 }
 
 
-let productos = ["manzana", "pera", "magoya"];
+//let productos = ["manzana", "pera", "magoya"];
 
-agregarProductos(productos);
+/*agregarProductos(productos);
 listarProductos(productos);
 buscarProducto(productos);
 filtrarProducto(productos);
-eliminarProducto(productos);
+eliminarProducto(productos);*/
 
-console.log(productos);
+//console.log(productos);
+
+
+
+//////////// implementacion en el DOM
+// Agregar nodos al DOM
+const lista = document.querySelector('#lista');
+
+const productos = ["Coca", "Pepsi", "Sprite", "Fanta", "Manaos"];
+
+// productos.forEach(producto => {
+//     const item = document.createElement('li');
+//     lista.appendChild(item).textContent = producto
+// });
+
+// Una mejor forma
+productos.forEach(producto => {
+    lista.innerHTML += `<li>${producto}</li>`;
+});
+
+// Clonar un nodo
+const li = document.querySelectorA('li');
+const liClonado = li.cloneNode(true);
+lista.appendChild(liClonado);
+
+// Eliminar un nodo
+lista.removeChild(liClonado);

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Carrito</h1>
+
+    <form id="formAgregarProducto">
+
+        <label for="">Agregar Productos</label>
+        <input type="text" id="inputAgregarProducto" placeholder="Inserte un nombre">
+        <button id="buttonAgregarProducto">Agregar</button>
+    </form>
+    <ul id="listaProductos"></ul>
+
+
+    <label for="">Buscar Producto</label>
+    <input  type="text" id="inputBuscarProducto" placeholder="Inserte un nombre">
+    <button type="button" id="buttonBuscarProducto" onclick="buscarProducto()">Buscar</button>
+
+    <p id="buscaProductos"></p>
+
+
+    <label for="">Filtrar Productos</label>
+    <input  type="text" id="inputFiltrarProducto" placeholder="Inserte un nombre">
+    <button type="button" id="buttonFiltrarProducto" onclick="filtrarProductos()">Filtrar</button>
+
+    <p id="filtraProductos"></p>
+
+    <script src="./javascript/carrito.js"></script>
+</body>
+</html>
