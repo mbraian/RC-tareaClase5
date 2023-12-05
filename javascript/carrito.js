@@ -9,7 +9,7 @@ let inputSearch = document.getElementById('inputBuscarProducto');
 let buscado = document.getElementById('buscaProductos');
 
 let filterInput = document.getElementById('inputFiltrarProducto');
-
+let filterList = document.getElementById('filtraProductos');
 
 
 // 1.- AGREGAR PRODUCTOS
@@ -61,11 +61,51 @@ function buscarEnCarrito (producto) {
 // 4.- FILTRAR PRODUCTOS
 function filtrarProductos(){
     const filtro = filterInput.value.toLowerCase().trim(); 
-    const filtrado = filtroProducto(filtro);
+    const productosFiltrados = filtroProducto(filtro);
+    
+    filterList.innerHTML = '';
+    
+    if(productosFiltrados.length !== 0){
+        productosFiltrados.forEach( (producto, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `${index+1}- ${producto} <button onclick = 'eliminarProducto("${producto}")'>Eliminar</button>`;
+            filterList.appendChild(li);
+        });
+    } else if(productosFiltrados.length === 0){
+        const p = document.createElement('p');
+        p.textContent = 'No hay productos que contengan '+filtro;
+        filterList.appendChild(p);
+    }
 
-    console.log(filtrado);
+    // FOREACH alternativo
+    // productosFiltrados.forEach((producto, index)=>{
+    //     const li = document.createElement('li');
+    //     li.textContent = `${index+1}- ${producto}`;
+
+    //     const botonEliminar = document.createElement('button');
+    //     botonEliminar.textContent = 'Eliminar';
+
+    //     botonEliminar.addEventListener('click', function (){
+    //         eliminarProducto(producto);
+    //         listarProductos();
+    //         resultadoFiltrado.textContent = '';
+    //     });
+    // });
+
+    console.log(productosFiltrados);
 }
 
 function filtroProducto(filtro){
     return carrito.filter(producto => producto.includes(filtro));
+}
+
+// 5.- ELIMINAR PRODUCTO
+const eliminarProducto = (productoAEliminar) => {
+    const indice = carrito.indexOf(productoAEliminar);
+    if(indice !== -1){
+        carrito.splice(indice,1);
+        listarProductos();
+        filterList.textContent = '';
+        filtrarProductos(); // Incorporación mía
+    }
 }
